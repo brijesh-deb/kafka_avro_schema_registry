@@ -13,7 +13,7 @@ import example.avro.User;
 public class Producer 
 {
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
-    private static final String TOPIC = "patient-data";
+    private static final String TOPIC = "brijesh";
 
     @Autowired
     private KafkaTemplate<String, User> kafkaTemplate;          // Use this for Avro
@@ -21,9 +21,10 @@ public class Producer
     public void sendAvroMessage7()
     {
         logger.info(String.format("Producing message -> Send Avro Message"));
-        User user = new User("Brijesh",10,"White");
+        final String key = "brijesh";
+        User user = new User("Brijesh","Yellow");
         ProducerRecord<String,User> producerRecord = new ProducerRecord<>(TOPIC,0,null,"111",user);
-        this.kafkaTemplate.send(TOPIC, user);
+        this.kafkaTemplate.send(TOPIC,key, user);
     }
 
 }
