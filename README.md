@@ -5,5 +5,13 @@
   - Usage of Schema Registry
 - Pre-requisite
   - Install Confluent Platform Community https://docs.confluent.io/current/quickstart/cos-quickstart.html
+- what happens behind the scene
+  - The producer built the Kafka message using the User object
+  - The producer registered the User schema with the schema registry to get a schema version ID, this either creates a new ID or reuses the existing one for that exact schema
+  - Avro serialized the User object using the schema
+  - The message was published on the topic with schema-id in message header
+  - When the message came to the consumer, it read the schema-id from the header
+  - The consumer used schema-id to get the User schema from the registry
+  - The consumer found a local class that could represent that object and deserialized the message into it
 - To Do
   - User data value in consumer application is coming blank. However, in console it comes fine.
