@@ -5,15 +5,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import example.avro.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Consumer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Consumer.class);
 
-    
-    @KafkaListener(topics = "brijesh")
-    public void consume(final ConsumerRecord<Long, User> consumerRecord) {
-    	LOGGER.info("received {} {}", consumerRecord.key(), consumerRecord.value());
-
-      }
+    @KafkaListener(topics = "brijesh", groupId = "group_id")
+    public void consume(ConsumerRecord<String, User> record) {
+        LOGGER.info(String.format("Consumed message -> %s", record.value()));
+    }
 }

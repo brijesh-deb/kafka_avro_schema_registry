@@ -21,9 +21,8 @@ public class Producer
     public void sendAvroMessage7()
     {
         logger.info(String.format("Producing message -> Send Avro Message"));
-        final String key = "brijesh";
-        User user = new User("Brijesh","Yellow");
-        ProducerRecord<String,User> producerRecord = new ProducerRecord<>(TOPIC,0,null,"111",user);
+        final String key = "Brijesh";
+        User user = new User("Mickey Mouse","Yellow");
         this.kafkaTemplate.send(TOPIC,key, user);
     }
 

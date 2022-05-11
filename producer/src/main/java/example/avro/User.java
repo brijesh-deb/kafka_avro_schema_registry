@@ -5,13 +5,12 @@
  */
 package example.avro;
 
-import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
+@SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class User extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -3322288458496492402L;
@@ -27,16 +26,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       new BinaryMessageDecoder<User>(MODEL$, SCHEMA$);
 
   /**
-   * Return the BinaryMessageEncoder instance used by this class.
-   * @return the message encoder used by this class
-   */
-  public static BinaryMessageEncoder<User> getEncoder() {
-    return ENCODER;
-  }
-
-  /**
    * Return the BinaryMessageDecoder instance used by this class.
-   * @return the message decoder used by this class
    */
   public static BinaryMessageDecoder<User> getDecoder() {
     return DECODER;
@@ -45,27 +35,17 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   /**
    * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
   public static BinaryMessageDecoder<User> createDecoder(SchemaStore resolver) {
     return new BinaryMessageDecoder<User>(MODEL$, SCHEMA$, resolver);
   }
 
-  /**
-   * Serializes this User to a ByteBuffer.
-   * @return a buffer holding the serialized data for this instance
-   * @throws java.io.IOException if this instance could not be serialized
-   */
+  /** Serializes this User to a ByteBuffer. */
   public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
     return ENCODER.encode(this);
   }
 
-  /**
-   * Deserializes a User from a ByteBuffer.
-   * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a User instance decoded from the given buffer
-   * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
-   */
+  /** Deserializes a User from a ByteBuffer. */
   public static User fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
@@ -91,7 +71,6 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     this.favorite_color = favorite_color;
   }
 
-  public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
@@ -120,7 +99,6 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     return name;
   }
 
-
   /**
    * Sets the value of the 'name' field.
    * @param value the value to set.
@@ -136,7 +114,6 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   public java.lang.CharSequence getFavoriteColor() {
     return favorite_color;
   }
-
 
   /**
    * Sets the value of the 'favorite_color' field.
@@ -160,11 +137,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * @return A new User RecordBuilder
    */
   public static example.avro.User.Builder newBuilder(example.avro.User.Builder other) {
-    if (other == null) {
-      return new example.avro.User.Builder();
-    } else {
-      return new example.avro.User.Builder(other);
-    }
+    return new example.avro.User.Builder(other);
   }
 
   /**
@@ -173,11 +146,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * @return A new User RecordBuilder
    */
   public static example.avro.User.Builder newBuilder(example.avro.User other) {
-    if (other == null) {
-      return new example.avro.User.Builder();
-    } else {
-      return new example.avro.User.Builder(other);
-    }
+    return new example.avro.User.Builder(other);
   }
 
   /**
@@ -202,11 +171,11 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       super(other);
       if (isValidValue(fields()[0], other.name)) {
         this.name = data().deepCopy(fields()[0].schema(), other.name);
-        fieldSetFlags()[0] = other.fieldSetFlags()[0];
+        fieldSetFlags()[0] = true;
       }
       if (isValidValue(fields()[1], other.favorite_color)) {
         this.favorite_color = data().deepCopy(fields()[1].schema(), other.favorite_color);
-        fieldSetFlags()[1] = other.fieldSetFlags()[1];
+        fieldSetFlags()[1] = true;
       }
     }
 
@@ -215,7 +184,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
      * @param other The existing instance to copy.
      */
     private Builder(example.avro.User other) {
-      super(SCHEMA$);
+            super(SCHEMA$);
       if (isValidValue(fields()[0], other.name)) {
         this.name = data().deepCopy(fields()[0].schema(), other.name);
         fieldSetFlags()[0] = true;
@@ -233,7 +202,6 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     public java.lang.CharSequence getName() {
       return name;
     }
-
 
     /**
       * Sets the value of the 'name' field.
@@ -274,7 +242,6 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       return favorite_color;
     }
 
-
     /**
       * Sets the value of the 'favorite_color' field.
       * @param value The value of 'favorite_color'.
@@ -314,8 +281,6 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
         record.name = fieldSetFlags()[0] ? this.name : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.favorite_color = fieldSetFlags()[1] ? this.favorite_color : (java.lang.CharSequence) defaultValue(fields()[1]);
         return record;
-      } catch (org.apache.avro.AvroMissingFieldException e) {
-        throw e;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
@@ -340,51 +305,4 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
-  @Override protected boolean hasCustomCoders() { return true; }
-
-  @Override public void customEncode(org.apache.avro.io.Encoder out)
-    throws java.io.IOException
-  {
-    out.writeString(this.name);
-
-    out.writeString(this.favorite_color);
-
-  }
-
-  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
-    throws java.io.IOException
-  {
-    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
-    if (fieldOrder == null) {
-      this.name = in.readString(this.name instanceof Utf8 ? (Utf8)this.name : null);
-
-      this.favorite_color = in.readString(this.favorite_color instanceof Utf8 ? (Utf8)this.favorite_color : null);
-
-    } else {
-      for (int i = 0; i < 2; i++) {
-        switch (fieldOrder[i].pos()) {
-        case 0:
-          this.name = in.readString(this.name instanceof Utf8 ? (Utf8)this.name : null);
-          break;
-
-        case 1:
-          this.favorite_color = in.readString(this.favorite_color instanceof Utf8 ? (Utf8)this.favorite_color : null);
-          break;
-
-        default:
-          throw new java.io.IOException("Corrupt ResolvingDecoder.");
-        }
-      }
-    }
-  }
 }
-
-
-
-
-
-
-
-
-
-
