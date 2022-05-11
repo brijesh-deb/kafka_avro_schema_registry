@@ -13,5 +13,3 @@
   - When the message came to the consumer, it read the schema-id from the header
   - The consumer used schema-id to get the User schema from the registry
   - The consumer found a local class that could represent that object and deserialized the message into it
-- To Do
-  - User data value in consumer application is coming blank. However, in console it comes fine.
